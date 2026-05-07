@@ -1,0 +1,12 @@
+services:
+  english-scenario:
+    build: .
+    container_name: english-scenario
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - SECRET_KEY=your-secret-key-here
+      - PORT=5000

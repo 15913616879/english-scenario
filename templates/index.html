@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Scenarios</title>
+<style>
+:root {
+  --blue: #D6EAF8; --blue-text: #185FA5; --blue-avatar: #185FA5;
+  --green: #D5F5E3; --green-text: #0F6E56; --green-avatar: #0F6E56;
+  --pink: #FADBD8; --pink-text: #A32D2D; --pink-avatar: #A32D2D;
+  --gray: #F8F9F9; --gray-text: #5F5E5A;
+  --bg: #EDEDED; --card: #fff; --nav-bg: #f8f8f8;
+  --border: #e0e0e0; --text: #333; --muted: #999;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.5;
+  min-height: 100vh; padding-bottom: 72px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ---- Bottom Nav ---- */
+nav.bottom-nav {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+  display: flex; background: var(--nav-bg); border-top: 1px solid var(--border);
+  max-width: 100%;
+}
+.nav-tab {
+  flex: 1; text-align: center; padding: 10px 0 8px; font-size: 11px; color: var(--muted);
+  cursor: pointer; border: none; background: none; display: flex;
+  flex-direction: column; align-items: center; gap: 2px;
+}
+.nav-tab .icon { font-size: 20px; line-height: 1; }
+.nav-tab.active { color: var(--blue-text); }
+
+/* ---- Top Header ---- */
+.top-bar {
+  display: flex; align-items: center; padding: 12px 16px; gap: 12px;
+  position: sticky; top: 0; z-index: 50; background: var(--bg);
+}
+.top-bar h1 { font-size: 17px; font-weight: 600; flex: 1; }
+.top-bar button {
+  background: none; border: none; font-size: 20px; cursor: pointer; padding: 4px;
+}
+.top-bar .btn-text { font-size: 14px; color: var(--blue-text); }
+
+/* Language switch button */
+.lang-btn {
+  padding: 6px 12px;
+  font-size: 13px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* ---- Main Content Area ---- */
+#main { padding: 0 16px; }
+
+/* Desktop wrapper */
+@media (min-width: 640px) {
+  body { display: flex; flex-direction: column; align-items: center; }
+  #main, .top-bar, nav.bottom-nav { width: 100%; max-width: 640px; }
+  nav.bottom-nav { max-width: 640px; left: 50%; transform: translateX(-50%); }
+}
+@media (min-width: 1024px) {
+  #main, .top-bar { max-width: 900px; }
+  nav.bottom-nav { max-width: 900px; }
+}
+
+/* ---- Category Cards ---- */
+.cat-grid { display: grid; gap: 10px; }
+@media (min-width: 640px) { .cat-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1024px) { .cat-grid { grid-template-columns: 1fr 1fr 1fr; } }
+
+.cat-card {
+  background: var(--card); border-radius: 12px; padding: 16px; cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.cat-card:active { background: #f5f5f5; }
+.cat-icon { font-size: 32px; flex-shrink: 0; }
+.cat-name { font-size: 15px; font-weight: 500; }
+.cat-meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+/* ---- Scenario List ---- */
+.sc-list { background: var(--card); border-radius: 12px; overflow: hidden; }
+.sc-item {
+  display: flex; align-items: center; padding: 14px 16px; cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+}
+.sc-item:last-child { border-bottom: none; }
+.sc-item:active { background: #f9f9f9; }
+.sc-dot {
+  width: 8px; height: 8px; border-radius: 4px; flex-shrink: 0; margin-right: 12px;
+}
+.sc-dot.viewed { background: var(--green-text); }
+.sc-dot.new { background: #ccc; }
+.sc-info { flex: 1; }
+.sc-title { font-size: 15px; font-weight: 500; }
+.sc-sub { font-size: 12px; color: var(--muted); }
+.sc-placeholder { opacity: 0.4; }
+
+/* ---- Review Page ---- */
+.review-card {
+  background: var(--card); border-radius: 12px; padding: 14px 16px; margin-bottom: 8px;
+  cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+.review-card:active { background: #f9f9f9; }
+.review-title { font-size: 15px; font-weight: 500; }
+.review-meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.random-btn {
+  width: 100%; padding: 12px; font-size: 15px; font-weight: 500;
+  background: var(--blue); color: var(--blue-text); border: none;
+  border-radius: 12px; cursor: pointer; margin-bottom: 16px;
+}
+.random-btn:active { opacity: 0.8; }
+
+/* ---- Chat Area ---- */
+.chat-container {
+  display: flex; flex-direction: column; gap: 6px; padding: 8px 0;
+}
+@media (min-width: 1024px) {
+  .dialogue-layout { display: flex; gap: 16px; }
+  .dialogue-sidebar { width: 200px; flex-shrink: 0; }
+  .dialogue-chat { flex: 1; min-width: 0; }
+}
+
+/* Chat message row */
+.chat-row { display: flex; align-items: flex-end; gap: 8px; margin: 4px 0; }
+.chat-row.right { flex-direction: row-reverse; }
+
+.chat-avatar {
+  width: 32px; height: 32px; border-radius: 16px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 600; color: #fff;
+}
+.chat-avatar.Star { background: var(--blue-avatar); }
+.chat-avatar.Alex { background: var(--green-avatar); }
+.chat-avatar.Emma { background: var(--pink-avatar); }
+
+.chat-bubble {
+  max-width: 75%; padding: 10px 14px; border-radius: 16px; font-size: 15px;
+  line-height: 1.5; position: relative; cursor: pointer;
+  transition: transform 0.15s;
+}
+.chat-bubble:active { transform: scale(0.98); }
+.chat-bubble.Star { background: var(--blue); color: var(--blue-text); border-bottom-right-radius: 4px; }
+.chat-bubble.Alex { background: var(--green); color: var(--green-text); border-bottom-left-radius: 4px; }
+.chat-bubble.Emma { background: var(--pink); color: var(--pink-text); border-bottom-left-radius: 4px; }
+
+.chat-bubble .spk { font-size: 10px; opacity: 0.7; margin-bottom: 2px; font-weight: 600; }
+
+/* Play indicator */
+.chat-bubble .play-dot {
+  display: inline-block; width: 6px; height: 6px; border-radius: 3px;
+  background: currentColor; opacity: 0; margin-left: 6px; vertical-align: middle;
+  transition: opacity 0.2s;
+}
+.chat-bubble.playing .play-dot { opacity: 0.7; animation: pulse 0.6s ease-in-out infinite; }
+.chat-bubble.playing { outline: 2px solid currentColor; outline-offset: -2px; }
+@keyframes pulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+/* Cover mode */
+.chat-bubble.covered { filter: blur(6px); }
+.chat-bubble.covered.revealed { filter: none; }
+
+/* Fill-blank mode */
+.blank-word {
+  display: inline-block; min-width: 32px; padding: 0 6px; margin: 0 2px;
+  border-bottom: 2px solid currentColor; cursor: pointer; color: transparent;
+  user-select: none;
+}
+.blank-word.revealed { color: inherit; font-weight: 600; }
+
+/* Unified Button Style - All buttons follow this pattern */
+.btn, .mode-tab, .extra-btn, .autoplay-btn, .progress-btn, .import-btn {
+  padding: 8px 14px;
+  font-size: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #f5f5f5;
+  color: #666;
+  border: none;
+  font-weight: 500;
+  transition: all 0.2s;
+  line-height: 1.4;
+}
+.btn:hover, .mode-tab:hover, .extra-btn:hover, .autoplay-btn:hover, .progress-btn:hover, .import-btn:hover {
+  background: #e8e8e8;
+}
+.btn.active, .mode-tab.active, .extra-btn.active, .autoplay-btn.playing, .progress-btn.active {
+  background: var(--blue-text);
+  color: #fff;
+}
+
+/* Action toolbar */
+.action-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  background: var(--card);
+  border-radius: 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.mode-tabs { 
+  display: flex; 
+  gap: 4px; 
+  flex: 1;
+}
+.mode-tab {
+  flex: 1; 
+  text-align: center; 
+}
+
+/* Extra mode buttons */
+.mode-buttons-extra {
+  display: flex;
+  gap: 6px;
+}
+
+/* Auto-play button - no additional styles needed, uses unified button style */
+
+/* Placeholder banner */
+.placeholder-banner {
+  background: #FAEEDA; border: 1px solid #EF9F27; border-radius: 10px;
+  padding: 16px; margin: 16px 0; font-size: 14px; color: #854F0B;
+}
+
+/* Settings page */
+.settings-card {
+  background: var(--card); border-radius: 12px; padding: 16px; margin-bottom: 10px;
+}
+.settings-card h2 { font-size: 16px; font-weight: 500; margin-bottom: 8px; }
+.settings-card p { font-size: 13px; color: var(--muted); }
+
+/* Empty state */
+.empty-state { text-align: center; padding: 60px 20px; color: var(--muted); }
+.empty-state .icon { font-size: 48px; margin-bottom: 12px; }
+.empty-state .msg { font-size: 14px; }
+
+/* Loading */
+.loading { text-align: center; padding: 40px; color: var(--muted); font-size: 14px; }
+
+/* Hidden */
+.hidden { display: none !important; }
+
+/* Import buttons */
+.import-btn {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+}
+
+/* Upload area */
+.upload-area {
+  margin-top: 8px;
+}
+
+/* Scenario completed state */
+.sc-item.completed {
+  background: rgba(15, 110, 86, 0.05);
+  border-left: 3px solid var(--green-text);
+}
+.sc-check {
+  color: var(--green-text);
+  font-weight: bold;
+  margin-left: 4px;
+  font-size: 12px;
+}
+.sc-checkin {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* Progress bar */
+.progress-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--card);
+  border-radius: 10px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.progress-buttons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.progress-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.progress-icon {
+  font-size: 14px;
+}
+.progress-info {
+  font-size: 11px;
+  color: var(--muted);
+  margin-left: auto;
+}
+</style>
+</head>
+<body>
+
+<!-- Top Bar -->
+<div class="top-bar" id="top-bar">
+  <button id="btn-back" class="btn-text hidden" onclick="goBack()">←</button>
+  <h1 id="page-title">English Scenarios</h1>
+  <button id="btn-lang" class="lang-btn" onclick="toggleLanguage()">EN</button>
+  <button id="btn-autoplay" class="autoplay-btn hidden" onclick="toggleAutoplay()">▶️ All</button>
+</div>
+
+<!-- Main Content -->
+<div id="main"></div>
+
+<!-- Bottom Nav -->
+<nav class="bottom-nav">
+  <button class="nav-tab active" data-tab="learn" onclick="switchTab('learn')">
+    <span class="icon">📚</span> <span data-i18n="navLearn">Learn</span>
+  </button>
+  <button class="nav-tab" data-tab="review" onclick="switchTab('review')">
+    <span class="icon">📖</span> <span data-i18n="navReview">Review</span>
+  </button>
+  <button class="nav-tab" data-tab="settings" onclick="switchTab('settings')">
+    <span class="icon">⚙️</span> <span data-i18n="navAbout">About</span>
+  </button>
+</nav>
+
+<script>
+// ===========================================================================
+// i18n - Translation System
+// ===========================================================================
+let currentLang = localStorage.getItem("lang") || "zh";
+
+const translations = {
+  zh: {
+    navLearn: "学习",
+    navReview: "复习",
+    navAbout: "关于",
+    appTitle: "英语场景练习",
+    back: "返回",
+    playAll: "全部播放",
+    stop: "停止",
+    ready: "已完成",
+    practiced: "已练习",
+    comingSoon: "即将推出",
+    new: "新",
+    randomReview: "随机复习",
+    noHistory: "还没有练习记录。\n打开一个场景开始学习吧！",
+    lastViewed: "上次：",
+    viewCount: "次",
+    modeRead: "阅读",
+    modeCover: "遮盖",
+    modeFill: "填空",
+    aboutTitle: "关于",
+    aboutDesc: "一个通过日常对话练习英语的个人工具。",
+    aboutScenarios: "10 个分类，100 个场景。以 Star 为主角。",
+    ttsTitle: "语音合成",
+    ttsDesc: "en-US-JennyNeural（免费，由 Microsoft Edge TTS 提供）",
+    ttsHint: "点击任意气泡听发音。首次播放可能需要 1-2 秒。",
+    modesTitle: "练习模式",
+    modesRead: "阅读：完整对话，彩色聊天气泡",
+    modesCover: "遮盖：隐藏 Star 的台词，点击揭示并聆听",
+    modesFill: "填空：关键词隐藏，点击查看答案",
+    markCompleted: "标记为已学习",
+    markUncompleted: "取消已学习",
+    checkin: "打卡",
+    lastStudy: "上次学习",
+    completedAt: "完成于",
+  },
+  en: {
+    navLearn: "Learn",
+    navReview: "Review",
+    navAbout: "About",
+    appTitle: "English Scenarios",
+    back: "Back",
+    playAll: "Play All",
+    stop: "Stop",
+    ready: "ready",
+    practiced: "practiced",
+    comingSoon: "Coming soon",
+    new: "new",
+    randomReview: "Random review",
+    noHistory: "No practice history yet.\nOpen a scenario to start!",
+    lastViewed: "last:",
+    viewCount: "times",
+    modeRead: "Read",
+    modeCover: "Cover",
+    modeFill: "Fill",
+    aboutTitle: "About",
+    aboutDesc: "A personal tool for practicing English through everyday dialogues.",
+    aboutScenarios: "100 scenarios across 10 categories. Star as the main character.",
+    ttsTitle: "TTS Voice",
+    ttsDesc: "en-US-JennyNeural (free, powered by Microsoft Edge TTS)",
+    ttsHint: "Tap any bubble to hear pronunciation. First play may take 1-2 seconds.",
+    modesTitle: "Modes",
+    modesRead: "Read — full dialogue with colored chat bubbles",
+    modesCover: "Cover — hide Star's lines, tap to reveal and hear",
+    modesFill: "Fill — key words hidden, tap to check answers",
+    markCompleted: "Mark as completed",
+    markUncompleted: "Mark as uncompleted",
+    checkin: "Checkin",
+    lastStudy: "Last study",
+    completedAt: "Completed at",
+  }
+};
+
+const catIcons = {
+  morning: "🌅",
+  meals: "🍽️",
+  transport: "🚗",
+  work: "💼",
+  shopping: "🛒",
+  restaurant: "🍴",
+  "phone-social": "📱",
+  health: "🏥",
+  travel: "✈️",
+  leisure: "🎮"
+};
+
+function t(key) {
+  return translations[currentLang][key] || translations.en[key] || key;
+}
+
+function updateAllTranslations() {
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    el.textContent = t(key);
+  });
+}
+
+function toggleLanguage() {
+  currentLang = currentLang === "zh" ? "en" : "zh";
+  localStorage.setItem("lang", currentLang);
+  document.getElementById("btn-lang").textContent = currentLang === "zh" ? "EN" : "中";
+  
+  updateAllTranslations();
+  
+  // Refresh current view
+  if (currentScId) {
+    openDialogue(currentScId);
+  } else if (currentCatId) {
+    showScenarios(currentCatId);
+  } else if (currentTab === "learn") {
+    showCategories();
+  } else if (currentTab === "review") {
+    showReview();
+  } else {
+    showSettings();
+  }
+}
+
+// ===========================================================================
+// State
+// ===========================================================================
+let categories = [];
+let currentTab = "learn";
+let currentCatId = null;
+let currentScId = null;
+let currentMode = "read";
+let currentDialogue = null;
+let isAutoplaying = false;
+let autoplayIdx = 0;
+let autoplayTimer = null;
+let coveredSpeaker = "Star"; // 遮盖模式下要遮盖的角色
+let showTranslation = false; // 阅读模式下是否显示翻译
+let currentProgress = null; // 当前场景的学习进度
+
+// ===========================================================================
+// API
+// ===========================================================================
+async function api(path, opts = {}) {
+  const res = await fetch(path, opts);
+  return res.json();
+}
+
+// ===========================================================================
+// Tab Navigation
+// ===========================================================================
+async function switchTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll(".nav-tab").forEach(t => t.classList.remove("active"));
+  document.querySelector(`[data-tab="${tab}"]`).classList.add("active");
+  currentCatId = null; currentScId = null; currentDialogue = null;
+  stopAutoplay();
+
+  if (tab === "learn") {
+    if (categories.length === 0) { categories = await api("/api/categories"); }
+    showCategories();
+  } else if (tab === "review") {
+    showReview();
+  } else {
+    showSettings();
+  }
+}
+
+// ===========================================================================
+// Back navigation
+// ===========================================================================
+async function goBack() {
+  stopAutoplay();
+  if (currentScId) { 
+    // Refresh categories data before showing scenario list
+    if (currentCatId) {
+      categories = await api(`/api/categories?t=${Date.now()}`);
+    }
+    showScenarios(currentCatId); 
+    return; 
+  }
+  if (currentCatId) { showCategories(); return; }
+}
+
+// ===========================================================================
+// Categories (Learn home)
+// ===========================================================================
+function showCategories() {
+  currentCatId = null; currentScId = null;
+  document.getElementById("page-title").textContent = t("appTitle");
+  document.getElementById("btn-back").classList.add("hidden");
+  document.getElementById("btn-autoplay").classList.add("hidden");
+
+  let html = '<div class="cat-grid">';
+  for (const cat of categories) {
+    const ready = cat.scenarios.filter(s => s.status === "ready").length;
+    const completed = cat.scenarios.filter(s => s.is_completed).length;
+    const practiced = cat.scenarios.filter(s => s.viewed_at && !s.is_completed).length;
+    const icon = catIcons[cat.id] || "📁";
+    html += `<div class="cat-card" onclick="showScenarios('${cat.id}')">
+      <div class="cat-icon">${icon}</div>
+      <div>
+        <div class="cat-name">${cat.name}</div>
+        <div class="cat-meta">${completed} ${t("ready")} &middot; ${practiced} ${t("practiced")}</div>
+      </div>
+    </div>`;
+  }
+  html += "</div>";
+  document.getElementById("main").innerHTML = html;
+}
+
+// ===========================================================================
+// Scenarios list
+// ===========================================================================
+function showScenarios(catId) {
+  currentCatId = catId; currentScId = null;
+  const cat = categories.find(c => c.id === catId);
+  if (!cat) return;
+
+  document.getElementById("page-title").textContent = cat.name;
+  document.getElementById("btn-back").classList.remove("hidden");
+  document.getElementById("btn-autoplay").classList.add("hidden");
+
+  const readyScenarios = cat.scenarios.filter(s => s.status === "ready");
+  
+  let html = '<div class="sc-list">';
+  for (const s of readyScenarios) {
+    const dotClass = s.viewed_at ? "viewed" : "new";
+    const itemClass = s.is_completed ? "completed" : "";
+    const completedIcon = s.is_completed ? '<span class="sc-check">✓</span>' : '';
+    const statusText = s.is_completed ? t("ready") : (s.viewed_at ? t("practiced") : t("new"));
+    html += `<div class="sc-item ${itemClass}" onclick="openDialogue('${s.id}')">
+      <div class="sc-dot ${dotClass}"></div>
+      <div class="sc-info">
+        <div class="sc-title">${s.title}${completedIcon}</div>
+        <div class="sc-sub">${s.title_cn} &middot; ${statusText}</div>
+      </div>
+    </div>`;
+  }
+  html += "</div>";
+  document.getElementById("main").innerHTML = html;
+}
+
+// ===========================================================================
+// Dialogue view
+// ===========================================================================
+async function openDialogue(scId) {
+  currentScId = scId; currentMode = "read"; currentDialogue = null; stopAutoplay();
+  document.getElementById("btn-back").classList.remove("hidden");
+
+  const s = await api(`/api/scenario/${scId}`);
+  currentDialogue = s;
+
+  if (s.status === "placeholder") {
+    document.getElementById("page-title").textContent = s.title;
+    document.getElementById("btn-autoplay").classList.add("hidden");
+    document.getElementById("main").innerHTML = `<div class="placeholder-banner">
+      <strong>${s.title} &mdash; ${s.title_cn}</strong><br>${t("comingSoon")}. Practice other scenarios first!
+    </div>`;
+    return;
+  }
+
+  document.getElementById("page-title").textContent = s.title;
+  document.getElementById("btn-autoplay").classList.remove("hidden");
+  document.getElementById("btn-autoplay").textContent = isAutoplaying ? "⏹️" : "▶️ All";
+
+  let html = "";
+  // PC sidebar: scenario list
+  if (window.innerWidth >= 1024) {
+    const cat = categories.find(c => c.id === currentCatId);
+    html += '<div class="dialogue-layout"><div class="dialogue-sidebar sc-list">';
+    if (cat) {
+      const readyScenarios = cat.scenarios.filter(s => s.status === "ready");
+      for (const si of readyScenarios) {
+        const active = si.id === scId ? ' style="background:#f0f4ff;font-weight:500"' : "";
+        const completed = si.is_completed ? ' completed' : '';
+        const completedIcon = si.is_completed ? '<span class="sc-check">✓</span>' : '';
+        html += `<div class="sc-item${completed}" onclick="openDialogue('${si.id}')"${active}>
+          <div class="sc-dot ${si.viewed_at ? 'viewed' : 'new'}"></div>
+          <div class="sc-title" style="font-size:13px">${si.title}${completedIcon}</div>
+          ${si.last_studied ? `<div class="sc-checkin">${t("lastStudy")}: ${formatTime(si.last_studied)}</div>` : ''}
+        </div>`;
+      }
+    }
+    html += '</div><div class="dialogue-chat">';
+  }
+
+  // Action toolbar
+  html += `<div class="action-toolbar">
+    <div class="mode-tabs">
+      <button class="mode-tab active" id="tab-read" onclick="switchMode('read')">${t("modeRead")}</button>
+      <button class="mode-tab" id="tab-cover" onclick="switchMode('cover')">${t("modeCover")}</button>
+      <button class="mode-tab" id="tab-fill" onclick="switchMode('fill')">${t("modeFill")}</button>
+    </div>
+    <div id="mode-buttons-extra" class="mode-buttons-extra"></div>
+  </div>`;
+
+  // Learning progress bar
+  html += `<div id="progress-bar" class="progress-bar"></div>`;
+
+  // Chat area
+  html += '<div class="chat-container" id="chat-container"></div>';
+
+  if (window.innerWidth >= 1024) html += "</div></div>";
+  document.getElementById("main").innerHTML = html;
+
+  renderChat(s);
+  updateModeButtons();
+  
+  // Load progress
+  loadProgress(scId);
+  
+  // Preload all audio in background
+  if (s.lines && s.lines.length > 0) {
+    s.lines.forEach((line, index) => {
+      if (line.hash && line.text) {
+        setTimeout(() => preloadAudio(line.hash, line.text), index * 100); // Stagger preloading
+      }
+    });
+  }
+}
+
+function renderChat(s) {
+  const container = document.getElementById("chat-container");
+  if (!container) return;
+
+  if (currentMode === "read") {
+    container.innerHTML = s.lines.map((l, i) => {
+      const side = l.speaker === "Star" ? "right" : "left";
+      const translationHTML = (l.text_cn && showTranslation) 
+        ? `<div class="text-cn" style="margin-top:6px;font-size:13px;opacity:0.8;border-top:1px solid rgba(0,0,0,0.1);padding-top:6px;">${l.text_cn}</div>`
+        : "";
+      return `<div class="chat-row ${side}">
+        <div class="chat-avatar ${l.speaker}">${l.speaker[0]}</div>
+        <div class="chat-bubble ${l.speaker}" data-idx="${i}" data-hash="${l.hash}" onclick="playLine(this)">
+          <div class="spk">${l.speaker}</div>${l.text}${translationHTML}<span class="play-dot"></span>
+        </div>
+      </div>`;
+    }).join("");
+
+  } else if (currentMode === "cover") {
+    container.innerHTML = s.lines.map((l, i) => {
+      const side = l.speaker === "Star" ? "right" : "left";
+      const covered = l.speaker === coveredSpeaker ? " covered" : "";
+      const onclick = l.speaker === coveredSpeaker
+        ? `event.stopPropagation(); this.classList.remove('covered'); this.classList.add('revealed'); playLine(this)`
+        : `playLine(this)`;
+      return `<div class="chat-row ${side}">
+        <div class="chat-avatar ${l.speaker}">${l.speaker[0]}</div>
+        <div class="chat-bubble ${l.speaker}${covered}" data-idx="${i}" data-hash="${l.hash}" onclick="${onclick}">
+          <div class="spk">${l.speaker}</div>${l.text}<span class="play-dot"></span>
+        </div>
+      </div>`;
+    }).join("");
+
+  } else if (currentMode === "fill") {
+    container.innerHTML = s.blanks.map((b, i) => {
+      const side = b.speaker === "Star" ? "right" : "left";
+      const text = b.text.replace(/___/g, () =>
+        `<span class="blank-word" onclick="event.stopPropagation(); this.classList.add('revealed'); this.textContent='${b.answer}'">___</span>`
+      );
+      return `<div class="chat-row ${side}">
+        <div class="chat-avatar ${b.speaker}">${b.speaker[0]}</div>
+        <div class="chat-bubble ${b.speaker}" data-idx="${i}" data-hash="" onclick="if(!this.querySelector('.blank-word:not(.revealed)')) playLine(this)">
+          <div class="spk">${b.speaker}</div>${text}<span class="play-dot"></span>
+        </div>
+      </div>`;
+    }).join("");
+  }
+}
+
+function switchCoveredSpeaker() {
+  const speakers = currentDialogue?.characters || ["Star", "Alex", "Emma"];
+  const currentIndex = speakers.indexOf(coveredSpeaker);
+  coveredSpeaker = speakers[(currentIndex + 1) % speakers.length];
+  if (currentDialogue) renderChat(currentDialogue);
+  updateModeButtons();
+}
+
+function toggleTranslation() {
+  showTranslation = !showTranslation;
+  if (currentDialogue) renderChat(currentDialogue);
+  updateModeButtons();
+}
+
+function updateModeButtons() {
+  const modeButtons = document.getElementById("mode-buttons-extra");
+  if (!modeButtons) return;
+  let extraButtons = "";
+  
+  if (currentMode === "read") {
+    extraButtons = `<button class="extra-btn ${showTranslation ? 'active' : ''}" onclick="toggleTranslation()">${showTranslation ? '隐藏翻译' : '显示翻译'}</button>`;
+  } else if (currentMode === "cover") {
+    extraButtons = `<button class="extra-btn" onclick="switchCoveredSpeaker()">遮盖: ${coveredSpeaker}</button>`;
+  }
+  
+  modeButtons.innerHTML = extraButtons;
+}
+
+function switchMode(mode) {
+  currentMode = mode;
+  document.querySelectorAll(".mode-tab").forEach(t => t.classList.remove("active"));
+  const tab = document.getElementById(`tab-${mode}`);
+  if (tab) tab.classList.add("active");
+  if (currentDialogue) renderChat(currentDialogue);
+  updateModeButtons();
+}
+
+// ===========================================================================
+// Learning Progress
+// ===========================================================================
+async function loadProgress(scenarioId) {
+  try {
+    const res = await fetch(`/api/progress/${scenarioId}`);
+    currentProgress = await res.json();
+    renderProgressBar();
+  } catch (e) {
+    console.error("Failed to load progress:", e);
+  }
+}
+
+function renderProgressBar() {
+  const container = document.getElementById("progress-bar");
+  if (!container || !currentProgress) return;
+  
+  const completed = currentProgress.is_completed;
+  const lastStudied = currentProgress.last_studied;
+  const completedAt = currentProgress.completed_at;
+  
+  let html = '<div class="progress-buttons">';
+  
+  if (completed) {
+    html += `<button class="progress-btn" onclick="toggleComplete(false)">
+      <span class="progress-icon">✓</span>
+      <span class="progress-text">${t("markUncompleted")}</span>
+    </button>`;
+    
+    html += `<button class="progress-btn" onclick="doCheckin()">
+      <span class="progress-icon">📅</span>
+      <span class="progress-text">${t("checkin")}</span>
+    </button>`;
+    
+    if (lastStudied) {
+      html += `<div class="progress-info">${t("lastStudy")}: ${formatTime(lastStudied)}</div>`;
+    }
+  } else {
+    html += `<button class="progress-btn" onclick="toggleComplete(true)">
+      <span class="progress-icon">✓</span>
+      <span class="progress-text">${t("markCompleted")}</span>
+    </button>`;
+    
+    if (completedAt) {
+      html += `<div class="progress-info">${t("completedAt")}: ${formatTime(completedAt)}</div>`;
+    }
+  }
+  
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+function renderSidebar() {
+  if (window.innerWidth < 1024) return;
+  
+  const sidebar = document.querySelector('.dialogue-sidebar');
+  if (!sidebar || !currentCatId) return;
+  
+  const cat = categories.find(c => c.id === currentCatId);
+  if (!cat) return;
+  
+  const readyScenarios = cat.scenarios.filter(s => s.status === "ready");
+  
+  let html = '';
+  for (const si of readyScenarios) {
+    const active = si.id === currentScId ? ' style="background:#f0f4ff;font-weight:500"' : "";
+    const completed = si.is_completed ? ' completed' : '';
+    const completedIcon = si.is_completed ? '<span class="sc-check">✓</span>' : '';
+    html += `<div class="sc-item${completed}" onclick="openDialogue('${si.id}')"${active}>
+      <div class="sc-dot ${si.viewed_at ? 'viewed' : 'new'}"></div>
+      <div class="sc-title" style="font-size:13px">${si.title}${completedIcon}</div>
+      ${si.last_studied ? `<div class="sc-checkin">${t("lastStudy")}: ${formatTime(si.last_studied)}</div>` : ''}
+    </div>`;
+  }
+  sidebar.innerHTML = html;
+}
+
+async function toggleComplete(completed) {
+  if (!currentScId) return;
+  
+  try {
+    const res = await fetch(`/api/progress/${currentScId}/complete`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ completed })
+    });
+    currentProgress = await res.json();
+    renderProgressBar();
+    // Refresh category list and sidebar
+    if (currentCatId) {
+      categories = await api(`/api/categories?t=${Date.now()}`);
+      renderSidebar();
+    }
+  } catch (e) {
+    console.error("Failed to update progress:", e);
+  }
+}
+
+async function doCheckin() {
+  if (!currentScId) return;
+  
+  try {
+    const res = await fetch(`/api/progress/${currentScId}/checkin`, {
+      method: "POST"
+    });
+    currentProgress = await res.json();
+    renderProgressBar();
+    // Refresh category list and sidebar
+    if (currentCatId) {
+      categories = await api(`/api/categories?t=${Date.now()}`);
+      renderSidebar();
+    }
+  } catch (e) {
+    console.error("Failed to checkin:", e);
+  }
+}
+
+function formatTime(timeStr) {
+  if (!timeStr) return "";
+  const parts = timeStr.split(" ");
+  if (parts.length >= 2) {
+    return parts[0] + " " + parts[1].substring(0, 5);
+  }
+  return timeStr;
+}
+
+// ===========================================================================
+// TTS Audio playback
+// ===========================================================================
+let activeAudio = null;
+const audioCache = new Map(); // Preloaded audio cache
+const preloadQueue = new Set(); // Track what's being preloaded
+
+async function preloadAudio(hash, text) {
+  if (!hash || audioCache.has(hash) || preloadQueue.has(hash)) return;
+  
+  preloadQueue.add(hash);
+  
+  try {
+    // First, try to get via GET (browser-cachable)
+    const audio = new Audio(`/api/tts/${hash}`);
+    audio.preload = "auto";
+    await new Promise((resolve, reject) => {
+      audio.oncanplaythrough = resolve;
+      audio.onerror = reject;
+      audio.load();
+    });
+    audioCache.set(hash, audio);
+  } catch {
+    // If GET fails, fall back to POST to generate
+    try {
+      const res = await fetch("/api/tts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text }),
+      });
+      if (res.ok) {
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+        const audio = new Audio(url);
+        audioCache.set(hash, audio);
+      }
+    } catch {}
+  }
+  
+  preloadQueue.delete(hash);
+}
+
+async function playLine(bubble) {
+  const hash = bubble.dataset.hash;
+  if (!hash) return;
+
+  // Stop current
+  if (activeAudio) { activeAudio.pause(); activeAudio = null; }
+  document.querySelectorAll(".chat-bubble.playing").forEach(b => b.classList.remove("playing"));
+
+  bubble.classList.add("playing");
+
+  try {
+    const text = bubble.textContent.replace(bubble.querySelector(".spk")?.textContent || "", "").replace("___", "").trim();
+    
+    let audio = audioCache.get(hash);
+    
+    if (!audio) {
+      // Try GET first (cached)
+      audio = new Audio(`/api/tts/${hash}`);
+      audio.preload = "auto";
+      audioCache.set(hash, audio);
+    }
+    
+    activeAudio = audio;
+    
+    audio.onended = () => {
+      bubble.classList.remove("playing");
+      activeAudio = null;
+      if (isAutoplaying) autoplayNext();
+    };
+
+    audio.onerror = () => {
+      bubble.classList.remove("playing");
+      activeAudio = null;
+      if (isAutoplaying) autoplayNext();
+    };
+
+    await audio.play();
+  } catch (e) {
+    bubble.classList.remove("playing");
+  }
+}
+
+// ===========================================================================
+// Autoplay
+// ===========================================================================
+function toggleAutoplay() {
+  if (isAutoplaying) { stopAutoplay(); return; }
+  startAutoplay();
+}
+
+function startAutoplay() {
+  isAutoplaying = true;
+  autoplayIdx = 0;
+  document.getElementById("btn-autoplay").textContent = "⏹️";
+  document.getElementById("btn-autoplay").classList.add("playing");
+  autoplayNext();
+}
+
+function stopAutoplay() {
+  isAutoplaying = false;
+  if (activeAudio) { activeAudio.pause(); activeAudio = null; }
+  if (autoplayTimer) { clearTimeout(autoplayTimer); autoplayTimer = null; }
+  document.querySelectorAll(".chat-bubble.playing").forEach(b => b.classList.remove("playing"));
+  const btn = document.getElementById("btn-autoplay");
+  if (btn) { btn.textContent = "▶️ All"; btn.classList.remove("playing"); }
+}
+
+function autoplayNext() {
+  if (!isAutoplaying) return;
+  const bubbles = document.querySelectorAll(".chat-bubble[data-hash]");
+  if (autoplayIdx >= bubbles.length) { stopAutoplay(); return; }
+
+  const b = bubbles[autoplayIdx];
+  autoplayIdx++;
+
+  // In cover mode, reveal Star lines
+  if (currentMode === "cover" && b.classList.contains("covered")) {
+    b.classList.remove("covered");
+    b.classList.add("revealed");
+  }
+
+  autoplayTimer = setTimeout(() => playLine(b), 400);
+}
+
+// ===========================================================================
+// Review page
+// ===========================================================================
+async function showReview() {
+  currentCatId = null; currentScId = null;
+  document.getElementById("page-title").textContent = t("navReview");
+  document.getElementById("btn-back").classList.add("hidden");
+  document.getElementById("btn-autoplay").classList.add("hidden");
+
+  try {
+    const items = await api("/api/review");
+    let html = `<button class="btn" style="margin-bottom:12px;width:100%" onclick="randomReview()">🎲 ${t("randomReview")}</button>`;
+    if (items.length === 0) {
+      html += `<div class="empty-state"><div class="icon">📭</div><div class="msg">${t("noHistory").replace("\n", "<br>")}</div></div>`;
+    } else {
+      for (const item of items) {
+        html += `<div class="review-card" onclick="openDialogueFromReview('${item.id}')">
+          <div class="review-title">${item.title}</div>
+          <div class="review-meta">${item.title_cn} &middot; ${item.difficulty} &middot; ${t("lastViewed")} ${item.viewed_at} &middot; ${item.view_count} ${t("viewCount")}</div>
+        </div>`;
+      }
+    }
+    document.getElementById("main").innerHTML = html;
+  } catch (e) {
+    document.getElementById("main").innerHTML = '<div class="loading">Failed to load</div>';
+  }
+}
+
+async function openDialogueFromReview(scId) {
+  // find category
+  for (const cat of categories) {
+    for (const s of cat.scenarios) {
+      if (s.id === scId) { currentCatId = cat.id; break; }
+    }
+    if (currentCatId) break;
+  }
+  switchTab("learn");
+  await new Promise(r => setTimeout(r, 50));
+  await openDialogue(scId);
+}
+
+async function randomReview() {
+  const items = await api("/api/review");
+  if (items.length === 0) return;
+  const pick = items[Math.floor(Math.random() * items.length)];
+  await openDialogueFromReview(pick.id);
+}
+
+// ===========================================================================
+// Settings page
+// ===========================================================================
+async function showSettings() {
+  currentCatId = null; currentScId = null;
+  document.getElementById("page-title").textContent = t("aboutTitle");
+  document.getElementById("btn-back").classList.add("hidden");
+  document.getElementById("btn-autoplay").classList.add("hidden");
+
+  const audioStatus = await api("/api/audio/status");
+  
+  document.getElementById("main").innerHTML = `
+    <div class="settings-card">
+      <h2>📚 ${currentLang === "zh" ? "英语场景练习" : "English Scenario Practice"}</h2>
+      <p>${t("aboutDesc")}</p>
+      <p style="margin-top:8px">${t("aboutScenarios")}</p>
+    </div>
+    <div class="settings-card">
+      <h2>🔊 ${t("ttsTitle")}</h2>
+      <p>${t("ttsDesc")}</p>
+      <p style="margin-top:4px">${t("ttsHint")}</p>
+      <p style="margin-top:8px;font-weight:500">Audio Cache: ${audioStatus.cached_lines}/${audioStatus.total_lines} (${audioStatus.percentage}%)</p>
+      <button class="import-btn" onclick="startPregenerate()">${currentLang === "zh" ? "预生成所有音频" : "Pregenerate All Audio"}</button>
+    </div>
+    <div class="settings-card">
+      <h2>🎯 ${t("modesTitle")}</h2>
+      <p><strong>${t("modeRead")}</strong> &mdash; ${t("modesRead")}</p>
+      <p><strong>${t("modeCover")}</strong> &mdash; ${t("modesCover")}</p>
+      <p><strong>${t("modeFill")}</strong> &mdash; ${t("modesFill")}</p>
+    </div>
+    <div class="settings-card">
+      <h2>📥 ${currentLang === "zh" ? "数据导入" : "Import Data"}</h2>
+      <p>${currentLang === "zh" ? "通过CSV文件导入场景对话数据。" : "Import scenario dialogues via CSV file."}</p>
+      <button class="import-btn" onclick="downloadTemplate()">${currentLang === "zh" ? "下载模板" : "Download Template"}</button>
+      <div class="upload-area" id="upload-area">
+        <input type="file" id="csv-file" accept=".csv" onchange="handleFileUpload(this)" style="display:none">
+        <button class="import-btn" onclick="document.getElementById('csv-file').click()">${currentLang === "zh" ? "选择CSV文件" : "Select CSV File"}</button>
+      </div>
+      <div id="upload-status" style="margin-top:8px;font-size:13px"></div>
+    </div>`;
+}
+
+function downloadTemplate() {
+  window.open("/api/export/template", "_blank");
+}
+
+async function handleFileUpload(input) {
+  const file = input.files[0];
+  if (!file) return;
+  
+  const status = document.getElementById("upload-status");
+  status.innerHTML = `<span style="color:#0F6E56">${currentLang === "zh" ? "正在上传..." : "Uploading..."}</span>`;
+  
+  const formData = new FormData();
+  formData.append("file", file);
+  
+  try {
+    const res = await fetch("/api/import/csv", {
+      method: "POST",
+      body: formData
+    });
+    
+    const result = await res.json();
+    
+    if (result.success) {
+      status.innerHTML = `<span style="color:#0F6E56">${currentLang === "zh" ? `成功更新 ${result.updated} 个场景！` : `Successfully updated ${result.updated} scenarios!`}</span>`;
+    } else {
+      status.innerHTML = `<span style="color:#A32D2D">${currentLang === "zh" ? "导入失败: " : "Import failed: "}${result.error}</span>`;
+    }
+  } catch (e) {
+    status.innerHTML = `<span style="color:#A32D2D">${currentLang === "zh" ? "上传失败" : "Upload failed"}</span>`;
+  }
+  
+  input.value = "";
+}
+
+async function startPregenerate() {
+  const status = document.querySelector(".settings-card:nth-child(2) p:last-child");
+  status.innerHTML = `<span style="color:#0F6E56">${currentLang === "zh" ? "正在后台预生成音频..." : "Pregenerating audio in background..."}</span>`;
+  
+  await api("/api/pregenerate", { method: "POST" });
+  
+  setTimeout(() => {
+    showSettings();
+  }, 500);
+}
+
+// ===========================================================================
+// Init
+// ===========================================================================
+(async function init() {
+  // Apply saved language
+  document.getElementById("btn-lang").textContent = currentLang === "zh" ? "EN" : "中";
+  updateAllTranslations();
+  
+  categories = await api("/api/categories");
+  showCategories();
+})();
+</script>
+</body>
+</html>

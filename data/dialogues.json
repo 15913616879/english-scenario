@@ -1,0 +1,261 @@
+{
+  "categories": [
+    {
+      "id": "morning",
+      "name": "起床与晨间 Routine",
+      "name_cn": "起床与晨间 Routine",
+      "scenarios": [
+        {
+          "id": "setting-alarm",
+          "title": "Setting the Alarm",
+          "title_cn": "设定闹钟",
+          "difficulty": "A2",
+          "characters": ["Star", "Alex"],
+          "status": "ready",
+          "lines": [
+            {"speaker": "Star", "text": "Hey Alex, can you help me set the alarm? My phone's dead.", "text_cn": "嘿Alex，能帮我设下闹钟吗？我手机没电了。"},
+            {"speaker": "Alex", "text": "Sure. What time?", "text_cn": "好的，几点？"},
+            {"speaker": "Star", "text": "Six thirty. Got an early meeting tomorrow.", "text_cn": "六点半。明天有个早会。"},
+            {"speaker": "Alex", "text": "Done. Want me to set another one at six forty too?", "text_cn": "好了。要不要再设一个六点四十的？"},
+            {"speaker": "Star", "text": "Yeah, good call. I always sleep through the first one.", "text_cn": "好主意，我总是睡过头错过第一个闹钟。"},
+            {"speaker": "Alex", "text": "Same here. Two alarms is the only way.", "text_cn": "我也是。两个闹钟是唯一办法。"},
+            {"speaker": "Star", "text": "Haha, exactly. Thanks, man. Good night.", "text_cn": "哈哈，没错。谢啦兄弟，晚安。"},
+            {"speaker": "Alex", "text": "Night. Don't forget to charge your phone.", "text_cn": "晚安。别忘了给手机充电。"}
+          ],
+          "blanks": [
+            {"speaker": "Star", "text": "Hey Alex, can you help me set the ___? My phone's dead.", "answer": "alarm"},
+            {"speaker": "Alex", "text": "Sure. What ___?", "answer": "time"},
+            {"speaker": "Star", "text": "Six thirty. Got an early ___ tomorrow.", "answer": "meeting"},
+            {"speaker": "Alex", "text": "Done. Want me to set ___ one at six forty too?", "answer": "another"},
+            {"speaker": "Star", "text": "Yeah, good ___. I always sleep through the first one.", "answer": "call"},
+            {"speaker": "Alex", "text": "Same here. Two alarms is the only ___.", "answer": "way"}
+          ],
+          "prev_id": null,
+          "next_id": "waking-up"
+        },
+        {
+          "id": "waking-up",
+          "title": "Waking Up",
+          "title_cn": "醒来",
+          "difficulty": "A2",
+          "characters": ["Star", "Alex"],
+          "status": "ready",
+          "lines": [
+            {"speaker": "Alex", "text": "Star! Wake up! It's six forty!", "text_cn": "Star！醒醒！六点四十了！"},
+            {"speaker": "Star", "text": "What? I just closed my eyes for a second...", "text_cn": "什么？我刚闭上眼睛一小会儿..."},
+            {"speaker": "Alex", "text": "Your first alarm went off ten minutes ago. You slept through it.", "text_cn": "你第一个闹钟十分钟前就响了，你睡过头了。"},
+            {"speaker": "Star", "text": "Ugh... did I?", "text_cn": "呃...是吗？"},
+            {"speaker": "Alex", "text": "Yeah. Get up or you'll be late for your meeting.", "text_cn": "是的，快起来不然你开会要迟到了。"},
+            {"speaker": "Star", "text": "Alright, alright. I'm up. Thanks, man.", "text_cn": "好的好的，我起来了。谢谢兄弟。"},
+            {"speaker": "Alex", "text": "No problem. Coffee's brewing.", "text_cn": "不客气，咖啡正在煮。"},
+            {"speaker": "Star", "text": "You're a lifesaver.", "text_cn": "你真是我的救星。"}
+          ],
+          "blanks": [
+            {"speaker": "Alex", "text": "Star! ___ up! It's six forty!", "answer": "Wake"},
+            {"speaker": "Star", "text": "What? I just closed my ___ for a second...", "answer": "eyes"},
+            {"speaker": "Alex", "text": "Your first ___ went off ten minutes ago. You slept through it.", "answer": "alarm"},
+            {"speaker": "Star", "text": "Ugh... ___ I?", "answer": "did"},
+            {"speaker": "Alex", "text": "Yeah. Get up or you'll be ___ for your meeting.", "answer": "late"},
+            {"speaker": "Alex", "text": "No problem. Coffee's ___.", "answer": "brewing"},
+            {"speaker": "Star", "text": "You're a ___.", "answer": "lifesaver"}
+          ],
+          "prev_id": "setting-alarm",
+          "next_id": "washing-up"
+        },
+        {
+          "id": "washing-up", "title": "Washing Up", "title_cn": "洗漱", "difficulty": "A2",
+          "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [],
+          "prev_id": "waking-up", "next_id": "getting-dressed"
+        },
+        {
+          "id": "getting-dressed", "title": "Getting Dressed", "title_cn": "穿衣服", "difficulty": "A2",
+          "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [],
+          "prev_id": "washing-up", "next_id": "having-breakfast"
+        },
+        {
+          "id": "having-breakfast", "title": "Having Breakfast", "title_cn": "吃早餐", "difficulty": "A2",
+          "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [],
+          "prev_id": "getting-dressed", "next_id": "checking-weather"
+        },
+        {
+          "id": "checking-weather", "title": "Checking the Weather", "title_cn": "看天气", "difficulty": "A2",
+          "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [],
+          "prev_id": "having-breakfast", "next_id": "packing-bag"
+        },
+        {
+          "id": "packing-bag", "title": "Packing the Bag", "title_cn": "收拾包", "difficulty": "A2",
+          "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [],
+          "prev_id": "checking-weather", "next_id": "saying-goodbye"
+        },
+        {
+          "id": "saying-goodbye", "title": "Saying Goodbye", "title_cn": "说再见", "difficulty": "A2",
+          "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [],
+          "prev_id": "packing-bag", "next_id": "morning-feelings"
+        },
+        {
+          "id": "morning-feelings", "title": "Morning Feelings", "title_cn": "早晨感受", "difficulty": "A2",
+          "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [],
+          "prev_id": "saying-goodbye", "next_id": "morning-problems"
+        },
+        {
+          "id": "morning-problems", "title": "Morning Problems", "title_cn": "早晨麻烦", "difficulty": "A2",
+          "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [],
+          "prev_id": "morning-feelings", "next_id": null
+        }
+      ]
+    },
+    {
+      "id": "meals",
+      "name": "在家吃饭",
+      "name_cn": "在家吃饭",
+      "scenarios": [
+        {"id": "setting-table", "title": "Setting the Table", "title_cn": "摆碗筷", "difficulty": "A2", "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": null, "next_id": "asking-dinner"},
+        {"id": "asking-dinner", "title": "Asking What's for Dinner", "title_cn": "问吃什么", "difficulty": "A2", "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "setting-table", "next_id": "talking-taste"},
+        {"id": "talking-taste", "title": "Talking About Taste", "title_cn": "聊味道", "difficulty": "A2", "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "asking-dinner", "next_id": "eating-together"},
+        {"id": "eating-together", "title": "Eating Together", "title_cn": "一起吃饭", "difficulty": "A2", "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "talking-taste", "next_id": "using-utensils"},
+        {"id": "using-utensils", "title": "Using Utensils", "title_cn": "用餐具", "difficulty": "A2", "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "eating-together", "next_id": "asking-more"},
+        {"id": "asking-more", "title": "Asking for More", "title_cn": "再来一碗", "difficulty": "A2", "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "using-utensils", "next_id": "clearing-table"},
+        {"id": "clearing-table", "title": "Clearing the Table", "title_cn": "收拾碗筷", "difficulty": "A2", "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "asking-more", "next_id": "washing-dishes"},
+        {"id": "washing-dishes", "title": "Washing Dishes", "title_cn": "洗碗", "difficulty": "A2", "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "clearing-table", "next_id": "leftovers"},
+        {"id": "leftovers", "title": "Leftovers", "title_cn": "剩菜", "difficulty": "A2", "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "washing-dishes", "next_id": "having-snack"},
+        {"id": "having-snack", "title": "Having a Snack", "title_cn": "吃零食", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "leftovers", "next_id": null}
+      ]
+    },
+    {
+      "id": "transport",
+      "name": "出门与交通",
+      "name_cn": "出门与交通",
+      "scenarios": [
+        {"id": "asking-directions", "title": "Asking for Directions", "title_cn": "问路", "difficulty": "A2", "characters": ["Star", "Emma"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": null, "next_id": "taking-bus"},
+        {"id": "taking-bus", "title": "Taking the Bus", "title_cn": "坐公交", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "asking-directions", "next_id": "taking-subway"},
+        {"id": "taking-subway", "title": "Taking the Subway", "title_cn": "坐地铁", "difficulty": "A2", "characters": ["Star", "Emma"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "taking-bus", "next_id": "taking-taxi"},
+        {"id": "taking-taxi", "title": "Taking a Taxi", "title_cn": "打车", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "taking-subway", "next_id": "riding-bike"},
+        {"id": "riding-bike", "title": "Riding a Bike", "title_cn": "骑单车", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "taking-taxi", "next_id": "driving"},
+        {"id": "driving", "title": "Driving", "title_cn": "开车", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "riding-bike", "next_id": "buying-ticket"},
+        {"id": "buying-ticket", "title": "Buying a Ticket", "title_cn": "买票", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "driving", "next_id": "when-to-get-off"},
+        {"id": "when-to-get-off", "title": "Asking When to Get Off", "title_cn": "问到站", "difficulty": "A2", "characters": ["Star", "Emma"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "buying-ticket", "next_id": "traffic-delays"},
+        {"id": "traffic-delays", "title": "Traffic and Delays", "title_cn": "堵车晚点", "difficulty": "A2", "characters": ["Star", "Emma"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "when-to-get-off", "next_id": "walking"},
+        {"id": "walking", "title": "Walking", "title_cn": "走路", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "traffic-delays", "next_id": null}
+      ]
+    },
+    {
+      "id": "work",
+      "name": "在学校 / 办公室",
+      "name_cn": "学校 / 办公室",
+      "scenarios": [
+        {"id": "greeting-colleagues", "title": "Greeting Colleagues", "title_cn": "打招呼", "difficulty": "A2", "characters": ["Star", "Emma"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": null, "next_id": "asking-help-work"},
+        {"id": "asking-help-work", "title": "Asking for Help", "title_cn": "求助", "difficulty": "A2", "characters": ["Star", "Emma"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "greeting-colleagues", "next_id": "in-meeting"},
+        {"id": "in-meeting", "title": "In a Meeting", "title_cn": "开会", "difficulty": "A2", "characters": ["Star", "Emma"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "asking-help-work", "next_id": "asking-questions"},
+        {"id": "asking-questions", "title": "Asking Questions", "title_cn": "提问", "difficulty": "A2", "characters": ["Star", "Emma"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "in-meeting", "next_id": "group-work"},
+        {"id": "group-work", "title": "Group Work", "title_cn": "分组讨论", "difficulty": "A2", "characters": ["Star", "Emma"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "asking-questions", "next_id": "taking-break"},
+        {"id": "taking-break", "title": "Taking a Break", "title_cn": "休息", "difficulty": "A2", "characters": ["Star", "Emma"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "group-work", "next_id": "lunch-break"},
+        {"id": "lunch-break", "title": "Lunch Break", "title_cn": "午饭时间", "difficulty": "A2", "characters": ["Star", "Emma"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "taking-break", "next_id": "tasks-deadline"},
+        {"id": "tasks-deadline", "title": "Tasks and Deadlines", "title_cn": "任务截止日期", "difficulty": "A2", "characters": ["Star", "Emma"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "lunch-break", "next_id": "giving-presentation"},
+        {"id": "giving-presentation", "title": "Giving a Presentation", "title_cn": "做报告", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "tasks-deadline", "next_id": "end-of-day"},
+        {"id": "end-of-day", "title": "End of Day", "title_cn": "下班", "difficulty": "A2", "characters": ["Star", "Emma"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "giving-presentation", "next_id": null}
+      ]
+    },
+    {
+      "id": "shopping",
+      "name": "购物",
+      "name_cn": "购物",
+      "scenarios": [
+        {"id": "supermarket", "title": "At the Supermarket", "title_cn": "逛超市", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": null, "next_id": "asking-prices"},
+        {"id": "asking-prices", "title": "Asking About Prices", "title_cn": "问价格", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "supermarket", "next_id": "comparing-products"},
+        {"id": "comparing-products", "title": "Comparing Products", "title_cn": "比较商品", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "asking-prices", "next_id": "trying-clothes"},
+        {"id": "trying-clothes", "title": "Trying on Clothes", "title_cn": "试穿", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "comparing-products", "next_id": "choosing-colors"},
+        {"id": "choosing-colors", "title": "Choosing Colors and Sizes", "title_cn": "选颜色尺码", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "trying-clothes", "next_id": "paying"},
+        {"id": "paying", "title": "Paying", "title_cn": "付钱", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "choosing-colors", "next_id": "getting-receipt"},
+        {"id": "getting-receipt", "title": "Getting a Receipt", "title_cn": "要小票", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "paying", "next_id": "returning-exchange"},
+        {"id": "returning-exchange", "title": "Returning or Exchanging", "title_cn": "退换货", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "getting-receipt", "next_id": "fruit-stand"},
+        {"id": "fruit-stand", "title": "At the Fruit Stand", "title_cn": "买水果", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "returning-exchange", "next_id": "shopping-list"},
+        {"id": "shopping-list", "title": "Shopping List", "title_cn": "购物清单", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "fruit-stand", "next_id": null}
+      ]
+    },
+    {
+      "id": "restaurant",
+      "name": "餐厅与点餐",
+      "name_cn": "餐厅与点餐",
+      "scenarios": [
+        {"id": "making-reservation", "title": "Making a Reservation", "title_cn": "预约", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": null, "next_id": "waiting-table"},
+        {"id": "waiting-table", "title": "Waiting for a Table", "title_cn": "等位", "difficulty": "A2", "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "making-reservation", "next_id": "ordering-food"},
+        {"id": "ordering-food", "title": "Ordering Food", "title_cn": "点菜", "difficulty": "A2", "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "waiting-table", "next_id": "asking-ingredients"},
+        {"id": "asking-ingredients", "title": "Asking About Ingredients", "title_cn": "问成分", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "ordering-food", "next_id": "special-requests"},
+        {"id": "special-requests", "title": "Special Requests", "title_cn": "特殊要求", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "asking-ingredients", "next_id": "during-meal"},
+        {"id": "during-meal", "title": "During the Meal", "title_cn": "用餐中", "difficulty": "A2", "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "special-requests", "next_id": "getting-bill"},
+        {"id": "getting-bill", "title": "Getting the Bill", "title_cn": "买单", "difficulty": "A2", "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "during-meal", "next_id": "takeaway"},
+        {"id": "takeaway", "title": "Takeaway", "title_cn": "打包外卖", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "getting-bill", "next_id": "fast-food"},
+        {"id": "fast-food", "title": "Fast Food", "title_cn": "快餐", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "takeaway", "next_id": "complaints"},
+        {"id": "complaints", "title": "Complaints", "title_cn": "投诉", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "fast-food", "next_id": null}
+      ]
+    },
+    {
+      "id": "phone-social",
+      "name": "打电话与社交",
+      "name_cn": "打电话与社交",
+      "scenarios": [
+        {"id": "answering-phone", "title": "Answering the Phone", "title_cn": "接电话", "difficulty": "A2", "characters": ["Star", "Emma"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": null, "next_id": "calling-someone"},
+        {"id": "calling-someone", "title": "Calling Someone", "title_cn": "打电话", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "answering-phone", "next_id": "leaving-message"},
+        {"id": "leaving-message", "title": "Leaving a Message", "title_cn": "留言", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "calling-someone", "next_id": "making-plans"},
+        {"id": "making-plans", "title": "Making Plans", "title_cn": "约时间", "difficulty": "A2", "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "leaving-message", "next_id": "canceling-rescheduling"},
+        {"id": "canceling-rescheduling", "title": "Canceling or Rescheduling", "title_cn": "取消改时间", "difficulty": "A2", "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "making-plans", "next_id": "inviting-friend"},
+        {"id": "inviting-friend", "title": "Inviting a Friend", "title_cn": "邀请", "difficulty": "A2", "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "canceling-rescheduling", "next_id": "small-talk"},
+        {"id": "small-talk", "title": "Small Talk", "title_cn": "闲聊", "difficulty": "A2", "characters": ["Star", "Emma"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "inviting-friend", "next_id": "saying-thank-you"},
+        {"id": "saying-thank-you", "title": "Saying Thank You", "title_cn": "感谢", "difficulty": "A2", "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "small-talk", "next_id": "apologizing"},
+        {"id": "apologizing", "title": "Apologizing", "title_cn": "道歉", "difficulty": "A2", "characters": ["Star", "Emma"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "saying-thank-you", "next_id": "ending-conversation"},
+        {"id": "ending-conversation", "title": "Ending a Conversation", "title_cn": "结束对话", "difficulty": "A2", "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "apologizing", "next_id": null}
+      ]
+    },
+    {
+      "id": "health",
+      "name": "看病与药店",
+      "name_cn": "看病与药店",
+      "scenarios": [
+        {"id": "describing-symptoms", "title": "Describing Symptoms", "title_cn": "描述症状", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": null, "next_id": "at-reception"},
+        {"id": "at-reception", "title": "At the Reception", "title_cn": "挂号", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "describing-symptoms", "next_id": "talking-doctor"},
+        {"id": "talking-doctor", "title": "Talking to the Doctor", "title_cn": "看医生", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "at-reception", "next_id": "getting-checkup"},
+        {"id": "getting-checkup", "title": "Getting a Check-up", "title_cn": "体检", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "talking-doctor", "next_id": "getting-prescription"},
+        {"id": "getting-prescription", "title": "Getting a Prescription", "title_cn": "开药方", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "getting-checkup", "next_id": "at-pharmacy"},
+        {"id": "at-pharmacy", "title": "At the Pharmacy", "title_cn": "药店买药", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "getting-prescription", "next_id": "taking-medicine"},
+        {"id": "taking-medicine", "title": "Taking Medicine", "title_cn": "吃药", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "at-pharmacy", "next_id": "feeling-worse"},
+        {"id": "feeling-worse", "title": "Feeling Worse", "title_cn": "加重了", "difficulty": "A2", "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "taking-medicine", "next_id": "getting-rest"},
+        {"id": "getting-rest", "title": "Getting Rest", "title_cn": "休息养病", "difficulty": "A2", "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "feeling-worse", "next_id": "getting-better"},
+        {"id": "getting-better", "title": "Getting Better", "title_cn": "好转", "difficulty": "A2", "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "getting-rest", "next_id": null}
+      ]
+    },
+    {
+      "id": "travel",
+      "name": "旅行与住宿",
+      "name_cn": "旅行与住宿",
+      "scenarios": [
+        {"id": "booking-hotel", "title": "Booking a Hotel", "title_cn": "订酒店", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": null, "next_id": "checking-in"},
+        {"id": "checking-in", "title": "Checking In", "title_cn": "入住", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "booking-hotel", "next_id": "asking-room"},
+        {"id": "asking-room", "title": "Asking About the Room", "title_cn": "问房间设施", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "checking-in", "next_id": "room-service"},
+        {"id": "room-service", "title": "Ordering Room Service", "title_cn": "叫客房服务", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "asking-room", "next_id": "asking-help-hotel"},
+        {"id": "asking-help-hotel", "title": "Asking for Help", "title_cn": "找酒店帮忙", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "room-service", "next_id": "checking-out"},
+        {"id": "checking-out", "title": "Checking Out", "title_cn": "退房", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "asking-help-hotel", "next_id": "lost-found"},
+        {"id": "lost-found", "title": "Lost and Found", "title_cn": "失物招领", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "checking-out", "next_id": "at-airport"},
+        {"id": "at-airport", "title": "At the Airport", "title_cn": "机场", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "lost-found", "next_id": "going-security"},
+        {"id": "going-security", "title": "Going Through Security", "title_cn": "过安检", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "at-airport", "next_id": "sightseeing"},
+        {"id": "sightseeing", "title": "Sightseeing", "title_cn": "观光", "difficulty": "A2", "characters": ["Star", "Emma"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "going-security", "next_id": null}
+      ]
+    },
+    {
+      "id": "leisure",
+      "name": "休闲娱乐",
+      "name_cn": "休闲娱乐",
+      "scenarios": [
+        {"id": "talking-hobbies", "title": "Talking About Hobbies", "title_cn": "聊爱好", "difficulty": "A2", "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": null, "next_id": "watching-movies"},
+        {"id": "watching-movies", "title": "Watching Movies", "title_cn": "看电影", "difficulty": "A2", "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "talking-hobbies", "next_id": "playing-sports"},
+        {"id": "playing-sports", "title": "Playing Sports", "title_cn": "运动", "difficulty": "A2", "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "watching-movies", "next_id": "playing-games"},
+        {"id": "playing-games", "title": "Playing Games", "title_cn": "打游戏", "difficulty": "A2", "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "playing-sports", "next_id": "listening-music"},
+        {"id": "listening-music", "title": "Listening to Music", "title_cn": "听歌", "difficulty": "A2", "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "playing-games", "next_id": "reading"},
+        {"id": "reading", "title": "Reading", "title_cn": "看书", "difficulty": "A2", "characters": ["Star"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "listening-music", "next_id": "going-out"},
+        {"id": "going-out", "title": "Going Out", "title_cn": "出去玩", "difficulty": "A2", "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "reading", "next_id": "weekend-plans"},
+        {"id": "weekend-plans", "title": "Weekend Plans", "title_cn": "周末计划", "difficulty": "A2", "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "going-out", "next_id": "weather-talk"},
+        {"id": "weather-talk", "title": "Weather Talk", "title_cn": "聊天气", "difficulty": "A2", "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "weekend-plans", "next_id": "sharing-feelings"},
+        {"id": "sharing-feelings", "title": "Sharing Feelings", "title_cn": "分享感受", "difficulty": "A2", "characters": ["Star", "Alex"], "status": "placeholder", "lines": [], "blanks": [], "prev_id": "weather-talk", "next_id": null}
+      ]
+    }
+  ]
+}
