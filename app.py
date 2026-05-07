@@ -377,9 +377,64 @@ def api_tts_get(hash_str):
     cache_path = TTS_CACHE_DIR / f"{hash_str}.mp3"
     if not cache_path.exists():
         return jsonify({"error": "not found"}), 404
+    response = send_file(cache_path, mimetype="audio/mpeg")
+    response.headers["Cache-Control"] = "public, max-age=31536000"
+    return response
+
+def get_slow_tts_audio(text):
+    """Get slow-speed TTS audio (0.5x rate)"""
+    text = text.strip()
+    if not text:
+        return None, None
+    h = hashlib.sha256((text + "_slow").encode()).hexdigest()[:12]
+    cache_path = TTS_CACHE_DIR / f"{h}.mp3"
     
-    response = send_file(str(cache_path), mimetype="audio/mpeg")
-    response.headers["Cache-Control"] = "public, max-age=31536000"  # Cache 1 year
+    if cache_path.exists():
+        return str(cache_path), h
+    
+    try:
+        import subprocess
+        import tempfile
+
+        with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False) as tmp:
+            tmp_path = tmp.name
+
+        result = subprocess.run(
+            [
+                "edge-tts",
+                "--voice", TTS_VOICE,
+                "--text", text,
+                "--write-media", tmp_path,
+                "--rate", "-50%",
+            ],
+            capture_output=True,
+            text=True,
+            timeout=15,
+        )
+
+        if result.returncode != 0:
+            return None, None
+
+        import shutil
+        shutil.move(tmp_path, str(cache_path))
+
+        return str(cache_path), h
+    except Exception:
+        return None, None
+
+@app.route("/api/tts/slow", methods=["POST"])
+def api_tts_slow():
+    body = request.get_json(silent=True) or {}
+    text = body.get("text", "").strip()
+    if not text:
+        return jsonify({"error": "text required"}), 400
+    
+    audio_path, h = get_slow_tts_audio(text)
+    if not audio_path:
+        return jsonify({"error": "tts failed"}), 500
+    
+    response = send_file(audio_path, mimetype="audio/mpeg")
+    response.headers["Cache-Control"] = "public, max-age=31536000"
     return response
 
 

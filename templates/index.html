@@ -168,6 +168,15 @@ nav.bottom-nav {
 .chat-bubble.playing { outline: 2px solid currentColor; outline-offset: -2px; }
 @keyframes pulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
 
+/* Slow play tortoise icon */
+.chat-bubble .slow-btn {
+  display: inline-block; margin-left: 6px; cursor: pointer; font-size: 12px;
+  opacity: 0; transition: opacity 0.2s; vertical-align: middle; user-select: none;
+}
+.chat-bubble:hover .slow-btn { opacity: 0.6; }
+.chat-bubble .slow-btn:hover { opacity: 1; }
+.chat-bubble.slow-playing .slow-btn { opacity: 1; }
+
 /* Cover mode */
 .chat-bubble.covered { filter: blur(6px); }
 .chat-bubble.covered.revealed { filter: none; }
@@ -690,7 +699,7 @@ function renderChat(s) {
       return `<div class="chat-row ${side}">
         <div class="chat-avatar ${l.speaker}">${l.speaker[0]}</div>
         <div class="chat-bubble ${l.speaker}${covered}" data-idx="${i}" data-hash="${l.hash}" onclick="${onclick}">
-          <div class="spk">${l.speaker}</div>${l.text}<span class="play-dot"></span>
+          <div class="spk">${l.speaker}</div>${l.text}<span class="play-dot"></span><span class="slow-btn" onclick="event.stopPropagation(); playSlowLine(this.parentElement)">🐢</span>
         </div>
       </div>`;
     }).join("");
@@ -704,7 +713,7 @@ function renderChat(s) {
       return `<div class="chat-row ${side}">
         <div class="chat-avatar ${b.speaker}">${b.speaker[0]}</div>
         <div class="chat-bubble ${b.speaker}" data-idx="${i}" data-hash="" onclick="if(!this.querySelector('.blank-word:not(.revealed)')) playLine(this)">
-          <div class="spk">${b.speaker}</div>${text}<span class="play-dot"></span>
+          <div class="spk">${b.speaker}</div>${text}<span class="play-dot"></span><span class="slow-btn" onclick="event.stopPropagation(); playSlowLine(this.parentElement)">🐢</span>
         </div>
       </div>`;
     }).join("");
@@ -955,6 +964,45 @@ async function playLine(bubble) {
     await audio.play();
   } catch (e) {
     bubble.classList.remove("playing");
+  }
+}
+
+let slowAudio = null;
+
+async function playSlowLine(bubble) {
+  if (slowAudio) { slowAudio.pause(); slowAudio = null; }
+  document.querySelectorAll(".chat-bubble.slow-playing").forEach(b => b.classList.remove("slow-playing"));
+  bubble.classList.add("slow-playing");
+
+  const text = bubble.textContent.replace(bubble.querySelector(".spk")?.textContent || "", "").replace("___", "").trim();
+  
+  try {
+    const resp = await fetch("/api/tts/slow", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text })
+    });
+    
+    if (!resp.ok) throw new Error("tts failed");
+    
+    const blob = await resp.blob();
+    const url = URL.createObjectURL(blob);
+    slowAudio = new Audio(url);
+    
+    slowAudio.onended = () => {
+      bubble.classList.remove("slow-playing");
+      slowAudio = null;
+      URL.revokeObjectURL(url);
+    };
+    slowAudio.onerror = () => {
+      bubble.classList.remove("slow-playing");
+      slowAudio = null;
+      URL.revokeObjectURL(url);
+    };
+    
+    await slowAudio.play();
+  } catch (e) {
+    bubble.classList.remove("slow-playing");
   }
 }
 
