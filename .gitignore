@@ -1,0 +1,9 @@
+venv/
+__pycache__/
+*.pyc
+.git
+*.db
+data/tts_cache/
+*.tar.gz
+english-scenario-docker.tar.gz
+*.zip
