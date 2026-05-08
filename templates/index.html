@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>English Scenarios</title>
+<link rel="icon" type="image/png" href="/static/favicon.png?v=4">
+<link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png?v=4">
+<link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png?v=4">
+<link rel="apple-touch-icon" sizes="180x180" href="/static/favicon-180x180.png?v=4">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#185FA5">
 <style>
 :root {
   --blue: #D6EAF8; --blue-text: #185FA5; --blue-avatar: #185FA5;
@@ -169,13 +177,16 @@ nav.bottom-nav {
 @keyframes pulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
 
 /* Slow play tortoise icon */
-.chat-bubble .slow-btn {
-  display: inline-block; margin-left: 6px; cursor: pointer; font-size: 12px;
-  opacity: 0; transition: opacity 0.2s; vertical-align: middle; user-select: none;
+.chat-row .slow-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; border-radius: 14px;
+  cursor: pointer;
+  opacity: 0.7; transition: opacity 0.2s, background 0.2s; user-select: none;
+  background: var(--card); border: 1px solid var(--border);
+  flex-shrink: 0; margin-bottom: 4px;
 }
-.chat-bubble:hover .slow-btn { opacity: 0.6; }
-.chat-bubble .slow-btn:hover { opacity: 1; }
-.chat-bubble.slow-playing .slow-btn { opacity: 1; }
+.chat-row .slow-btn:hover { opacity: 1; background: var(--bg); }
+.chat-row.slow-playing .slow-btn { opacity: 1; background: var(--blue); border-color: var(--blue-text); }
 
 /* Cover mode */
 .chat-bubble.covered { filter: blur(6px); }
@@ -686,6 +697,7 @@ function renderChat(s) {
         <div class="chat-bubble ${l.speaker}" data-idx="${i}" data-hash="${l.hash}" onclick="playLine(this)">
           <div class="spk">${l.speaker}</div>${l.text}${translationHTML}<span class="play-dot"></span>
         </div>
+        <span class="slow-btn" onclick="event.stopPropagation(); playSlowLine(this.parentElement.querySelector('.chat-bubble'))"><svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="18" height="18"><path d="M884.6848 367.2576h-8.3968c-66.9696 11.4688-128 50.432-170.6496 109.3632a62.9248 62.9248 0 0 0-47.872-13.2608c-47.872-102.7584-141.9776-167.6288-245.0944-168.96-114.4832-1.0752-216.576 80.896-252.8768 203.008l-5.7344 23.0912h-8.2944c-30.72-0.3072-57.9072 22.8352-65.9968 56.32-0.9728 4.2496-1.9968 8.7552-2.8672 13.1072a16.6912 16.6912 0 0 0 2.8672 12.9536 13.9776 13.9776 0 0 0 11.4176 5.9392h19.8656v17.5104a125.0304 125.0304 0 0 0 62.3616 38.7584l-4.8128 62.464h106.4448v-1.8944a47.4112 47.4112 0 0 0-23.7568-40.96h-1.4336a20.9408 20.9408 0 0 1 20.48-17.6128h220.16a546.2528 546.2528 0 0 0 120.32-15.36l25.1392 78.08h105.728v-1.8944a47.4624 47.4624 0 0 0-23.8592-42.9568l-2.048-1.0752-20.48-59.8528 14.4896-7.68a1353.5232 1353.5232 0 0 0 125.7984-79.36l8.8064-6.2464a511.5392 511.5392 0 0 1 67.2768-37.1712c23.3984-11.1104 37.7856-37.9392 35.5328-66.56-4.352-35.072-31.4368-60.8768-62.8736-59.8528z" fill="currentColor"></path></svg></span>
       </div>`;
     }).join("");
 
@@ -699,8 +711,9 @@ function renderChat(s) {
       return `<div class="chat-row ${side}">
         <div class="chat-avatar ${l.speaker}">${l.speaker[0]}</div>
         <div class="chat-bubble ${l.speaker}${covered}" data-idx="${i}" data-hash="${l.hash}" onclick="${onclick}">
-          <div class="spk">${l.speaker}</div>${l.text}<span class="play-dot"></span><span class="slow-btn" onclick="event.stopPropagation(); playSlowLine(this.parentElement)">🐢</span>
+          <div class="spk">${l.speaker}</div>${l.text}<span class="play-dot"></span>
         </div>
+        <span class="slow-btn" onclick="event.stopPropagation(); playSlowLine(this.parentElement.querySelector('.chat-bubble'))"><svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="18" height="18"><path d="M884.6848 367.2576h-8.3968c-66.9696 11.4688-128 50.432-170.6496 109.3632a62.9248 62.9248 0 0 0-47.872-13.2608c-47.872-102.7584-141.9776-167.6288-245.0944-168.96-114.4832-1.0752-216.576 80.896-252.8768 203.008l-5.7344 23.0912h-8.2944c-30.72-0.3072-57.9072 22.8352-65.9968 56.32-0.9728 4.2496-1.9968 8.7552-2.8672 13.1072a16.6912 16.6912 0 0 0 2.8672 12.9536 13.9776 13.9776 0 0 0 11.4176 5.9392h19.8656v17.5104a125.0304 125.0304 0 0 0 62.3616 38.7584l-4.8128 62.464h106.4448v-1.8944a47.4112 47.4112 0 0 0-23.7568-40.96h-1.4336a20.9408 20.9408 0 0 1 20.48-17.6128h220.16a546.2528 546.2528 0 0 0 120.32-15.36l25.1392 78.08h105.728v-1.8944a47.4624 47.4624 0 0 0-23.8592-42.9568l-2.048-1.0752-20.48-59.8528 14.4896-7.68a1353.5232 1353.5232 0 0 0 125.7984-79.36l8.8064-6.2464a511.5392 511.5392 0 0 1 67.2768-37.1712c23.3984-11.1104 37.7856-37.9392 35.5328-66.56-4.352-35.072-31.4368-60.8768-62.8736-59.8528z" fill="currentColor"></path></svg></span>
       </div>`;
     }).join("");
 
@@ -713,8 +726,9 @@ function renderChat(s) {
       return `<div class="chat-row ${side}">
         <div class="chat-avatar ${b.speaker}">${b.speaker[0]}</div>
         <div class="chat-bubble ${b.speaker}" data-idx="${i}" data-hash="" onclick="if(!this.querySelector('.blank-word:not(.revealed)')) playLine(this)">
-          <div class="spk">${b.speaker}</div>${text}<span class="play-dot"></span><span class="slow-btn" onclick="event.stopPropagation(); playSlowLine(this.parentElement)">🐢</span>
+          <div class="spk">${b.speaker}</div>${text}<span class="play-dot"></span>
         </div>
+        <span class="slow-btn" onclick="event.stopPropagation(); playSlowLine(this.parentElement.querySelector('.chat-bubble'))"><svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="18" height="18"><path d="M884.6848 367.2576h-8.3968c-66.9696 11.4688-128 50.432-170.6496 109.3632a62.9248 62.9248 0 0 0-47.872-13.2608c-47.872-102.7584-141.9776-167.6288-245.0944-168.96-114.4832-1.0752-216.576 80.896-252.8768 203.008l-5.7344 23.0912h-8.2944c-30.72-0.3072-57.9072 22.8352-65.9968 56.32-0.9728 4.2496-1.9968 8.7552-2.8672 13.1072a16.6912 16.6912 0 0 0 2.8672 12.9536 13.9776 13.9776 0 0 0 11.4176 5.9392h19.8656v17.5104a125.0304 125.0304 0 0 0 62.3616 38.7584l-4.8128 62.464h106.4448v-1.8944a47.4112 47.4112 0 0 0-23.7568-40.96h-1.4336a20.9408 20.9408 0 0 1 20.48-17.6128h220.16a546.2528 546.2528 0 0 0 120.32-15.36l25.1392 78.08h105.728v-1.8944a47.4624 47.4624 0 0 0-23.8592-42.9568l-2.048-1.0752-20.48-59.8528 14.4896-7.68a1353.5232 1353.5232 0 0 0 125.7984-79.36l8.8064-6.2464a511.5392 511.5392 0 0 1 67.2768-37.1712c23.3984-11.1104 37.7856-37.9392 35.5328-66.56-4.352-35.072-31.4368-60.8768-62.8736-59.8528z" fill="currentColor"></path></svg></span>
       </div>`;
     }).join("");
   }
@@ -971,8 +985,9 @@ let slowAudio = null;
 
 async function playSlowLine(bubble) {
   if (slowAudio) { slowAudio.pause(); slowAudio = null; }
-  document.querySelectorAll(".chat-bubble.slow-playing").forEach(b => b.classList.remove("slow-playing"));
-  bubble.classList.add("slow-playing");
+  document.querySelectorAll(".chat-row.slow-playing").forEach(r => r.classList.remove("slow-playing"));
+  const row = bubble.closest(".chat-row");
+  if (row) row.classList.add("slow-playing");
 
   const text = bubble.textContent.replace(bubble.querySelector(".spk")?.textContent || "", "").replace("___", "").trim();
   
@@ -990,19 +1005,19 @@ async function playSlowLine(bubble) {
     slowAudio = new Audio(url);
     
     slowAudio.onended = () => {
-      bubble.classList.remove("slow-playing");
+      if (row) row.classList.remove("slow-playing");
       slowAudio = null;
       URL.revokeObjectURL(url);
     };
     slowAudio.onerror = () => {
-      bubble.classList.remove("slow-playing");
+      if (row) row.classList.remove("slow-playing");
       slowAudio = null;
       URL.revokeObjectURL(url);
     };
     
     await slowAudio.play();
   } catch (e) {
-    bubble.classList.remove("slow-playing");
+    if (row) row.classList.remove("slow-playing");
   }
 }
 

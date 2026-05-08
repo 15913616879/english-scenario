@@ -405,7 +405,7 @@ def get_slow_tts_audio(text):
                 "--voice", TTS_VOICE,
                 "--text", text,
                 "--write-media", tmp_path,
-                "--rate", "-50%",
+                "--rate=-50%",
             ],
             capture_output=True,
             text=True,
